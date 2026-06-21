@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Play, X } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 import { ytThumb } from "@/lib/youtube";
@@ -15,6 +16,25 @@ export default function VideosSection({
 }) {
   const [activeCat, setActiveCat] = useState<string>("Tümü");
   const [playing, setPlaying] = useState<Video | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  // Modal açıkken scroll'u kilitle (hem body hem snap-scroller <main>)
+  useEffect(() => {
+    const scroller = document.querySelector("main");
+    if (playing) {
+      document.body.style.overflow = "hidden";
+      if (scroller) scroller.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      if (scroller) scroller.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      if (scroller) scroller.style.overflow = "";
+    };
+  }, [playing]);
 
   if (videos.length === 0) return null;
 
@@ -92,37 +112,40 @@ export default function VideosSection({
         </div>
       </div>
 
-      {/* Oynatıcı modal */}
-      {playing && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-          onClick={() => setPlaying(null)}
-        >
+      {/* Oynatıcı modal — portal ile body'ye render edilir (tam ekran blur) */}
+      {mounted &&
+        playing &&
+        createPortal(
           <div
-            className="relative w-full max-w-3xl"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-xl"
+            onClick={() => setPlaying(null)}
           >
-            <button
-              onClick={() => setPlaying(null)}
-              className="absolute -top-10 right-0 flex items-center gap-1 text-sm text-zinc-300 hover:text-white"
+            <div
+              className="relative w-full max-w-3xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="h-5 w-5" /> Kapat
-            </button>
-            <div className="aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/10">
-              <iframe
-                src={`https://www.youtube.com/embed/${playing.youtubeId}?autoplay=1`}
-                title={playing.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="h-full w-full"
-              />
+              <button
+                onClick={() => setPlaying(null)}
+                className="absolute -top-10 right-0 flex items-center gap-1 text-sm text-zinc-300 hover:text-white"
+              >
+                <X className="h-5 w-5" /> Kapat
+              </button>
+              <div className="aspect-video w-full overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-2xl shadow-black/60">
+                <iframe
+                  src={`https://www.youtube.com/embed/${playing.youtubeId}?autoplay=1`}
+                  title={playing.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="h-full w-full"
+                />
+              </div>
+              <p className="mt-3 text-center text-sm font-semibold text-zinc-100">
+                {playing.title}
+              </p>
             </div>
-            <p className="mt-3 text-sm font-semibold text-zinc-100">
-              {playing.title}
-            </p>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </section>
   );
 }
