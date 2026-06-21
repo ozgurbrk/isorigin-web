@@ -4,13 +4,13 @@ import { db } from "@/db";
 import { videoCategories, videos } from "@/db/schema";
 import { ytThumb } from "@/lib/youtube";
 import {
-  addVideo,
   addVideoCategory,
   deleteVideo,
   deleteVideoCategory,
   toggleVideoFeatured,
 } from "@/app/admin/actions";
 import { PageTitle, Panel, inputCls, btnPrimary } from "../ui";
+import VideoForms from "./VideoForms";
 
 export const dynamic = "force-dynamic";
 
@@ -59,43 +59,11 @@ export default async function VideolarAdmin() {
         </form>
       </Panel>
 
-      {/* Yeni video */}
-      <Panel title="Yeni Video">
-        <form action={addVideo} className="space-y-3">
-          <input
-            name="youtube"
-            className={inputCls}
-            placeholder="YouTube linki veya video ID (örn: https://youtu.be/xxxx)"
-          />
-          <input name="title" className={inputCls} placeholder="Başlık" />
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <div>
-              <label className="mb-1 block text-xs text-zinc-500">
-                Kategori
-              </label>
-              <select name="category" className={inputCls} defaultValue="">
-                <option value="">— Kategorisiz —</option>
-                {cats.map((c) => (
-                  <option key={c.id} value={c.name}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <label className="flex items-end gap-2 pb-2 text-sm text-zinc-400">
-              <input
-                type="checkbox"
-                name="featured"
-                className="accent-gold-400"
-              />
-              Öne çıkan
-            </label>
-          </div>
-          <button className={btnPrimary}>
-            <Plus size={13} /> Video Ekle
-          </button>
-        </form>
-      </Panel>
+      {/* Yeni video — tekli / toplu */}
+      <div>
+        <h2 className="mb-2 text-sm font-bold text-zinc-300">Yeni Video</h2>
+        <VideoForms categories={cats} />
+      </div>
 
       {/* Video listesi */}
       <div className="space-y-2">

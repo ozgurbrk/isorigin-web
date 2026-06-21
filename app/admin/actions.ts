@@ -14,7 +14,7 @@ import {
   videoCategories,
   videos,
 } from "@/db/schema";
-import { parseYouTubeId } from "@/lib/youtube";
+import { parseYouTubeId, fetchYouTubeTitle } from "@/lib/youtube";
 import {
   createSession,
   destroySession,
@@ -35,12 +35,16 @@ function refresh() {
 // ---- Videolar ----
 export async function addVideo(formData: FormData) {
   await requireAuth();
-  const title = String(formData.get("title") ?? "").trim();
+  let title = String(formData.get("title") ?? "").trim();
   const link = String(formData.get("youtube") ?? "").trim();
   const category = String(formData.get("category") ?? "").trim();
   const featured = formData.get("featured") === "on";
   const youtubeId = parseYouTubeId(link);
-  if (!title || !youtubeId) return;
+  if (!youtubeId) return;
+  // Başlık boşsa YouTube'dan otomatik çek
+  if (!title) {
+    title = (await fetchYouTubeTitle(youtubeId)) ?? "Başlıksız video";
+  }
   await db.insert(videos).values({
     title,
     youtubeId,
@@ -48,6 +52,32 @@ export async function addVideo(formData: FormData) {
     featured,
     sortOrder: Date.now() % 100000,
   });
+  refresh();
+}
+
+export async function addVideosBulk(formData: FormData) {
+  await requireAuth();
+  const raw = String(formData.get("links") ?? "");
+  const category = String(formData.get("category") ?? "").trim();
+  const featured = formData.get("featured") === "on";
+  const lines = raw
+    .split(/\r?\n/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  let order = Date.now() % 100000;
+  for (const line of lines) {
+    const youtubeId = parseYouTubeId(line);
+    if (!youtubeId) continue;
+    const title = (await fetchYouTubeTitle(youtubeId)) ?? "Başlıksız video";
+    await db.insert(videos).values({
+      title,
+      youtubeId,
+      category,
+      featured,
+      sortOrder: order++,
+    });
+  }
   refresh();
 }
 

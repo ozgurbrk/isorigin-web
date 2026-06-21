@@ -27,3 +27,20 @@ export function ytThumb(id: string): string {
 export function ytWatchUrl(id: string): string {
   return `https://www.youtube.com/watch?v=${id}`;
 }
+
+/** YouTube oEmbed ile video başlığını çeker (anahtar gerekmez). */
+export async function fetchYouTubeTitle(id: string): Promise<string | null> {
+  try {
+    const r = await fetch(
+      `https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(
+        ytWatchUrl(id),
+      )}`,
+      { cache: "no-store" },
+    );
+    if (!r.ok) return null;
+    const j = await r.json();
+    return typeof j.title === "string" ? j.title : null;
+  } catch {
+    return null;
+  }
+}
