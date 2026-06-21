@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0b;
+  --foreground: #f5f5f4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Taban renk; hareketli katman (BackgroundFX) bunun üstünü kaplar */
+  background-color: #120c1a;
+  color: var(--foreground);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hareketi azalt tercihi olan kullanıcılar için animasyonları durdur */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(180deg, #f5d98b 0%, #d4a92c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Logo paletinden marka gradyanı: kırmızı -> pembe -> mor -> turuncu */
+  .brand-gradient {
+    background-image: linear-gradient(
+      100deg,
+      #ef4444 0%,
+      #ec4899 30%,
+      #a855f7 60%,
+      #f59e0b 100%
+    );
+  }
+
+  .text-brand {
+    background-image: linear-gradient(
+      100deg,
+      #f87171 0%,
+      #ec4899 35%,
+      #c084fc 65%,
+      #fbbf24 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card-surface {
+    position: relative;
+    background: linear-gradient(
+      180deg,
+      rgba(30, 26, 38, 0.72),
+      rgba(18, 16, 24, 0.72)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .card-surface:hover {
+    border-color: rgba(212, 169, 44, 0.4);
+    box-shadow: 0 10px 40px -12px rgba(168, 85, 247, 0.25);
+  }
+
+  /* İnce üst kenar parlaması (cam efekti) */
+  .sheen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      130deg,
+      rgba(255, 255, 255, 0.18),
+      transparent 40%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* thin gold scrollbar inside scroll areas */
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(212, 169, 44, 0.4);
+  border-radius: 9999px;
+}
