@@ -43,12 +43,24 @@ export async function fetchTikTok(
     );
     const jp = await rp.json();
     if (jp?.code === 0 && Array.isArray(jp.data?.videos)) {
+      // Her küçük resim "kapakURL||videoURL" biçiminde saklanır
       const thumbs = jp.data.videos
-        .map((v: { cover?: string; origin_cover?: string }) =>
-          v.cover || v.origin_cover,
+        .map(
+          (v: {
+            cover?: string;
+            origin_cover?: string;
+            video_id?: string;
+          }) => {
+            const cover = v.cover || v.origin_cover;
+            if (!cover) return null;
+            const link = v.video_id
+              ? `https://www.tiktok.com/@${id}/video/${v.video_id}`
+              : "";
+            return link ? `${cover}||${link}` : cover;
+          },
         )
         .filter(Boolean)
-        .slice(0, 6);
+        .slice(0, 6) as string[];
       if (thumbs.length) out.thumbnails = thumbs;
     }
   } catch {

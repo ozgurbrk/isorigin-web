@@ -149,22 +149,25 @@ export default function LivePreview({ channels }: { channels: LiveChannel[] }) {
 
               {thumbs.length > 0 && (
                 <div className="grid grid-cols-2 gap-2 px-3 pb-3 pt-3">
-                  {thumbs.map((src, i) => (
-                    <a
-                      key={i}
-                      href={ch.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative block aspect-[3/4] w-full overflow-hidden rounded-lg ring-1 ring-white/10"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={src}
-                        alt=""
-                        className="h-full w-full object-cover transition-transform hover:scale-105"
-                      />
-                    </a>
-                  ))}
+                  {thumbs.map((raw, i) => {
+                    const [cover, link] = raw.split("||");
+                    return (
+                      <a
+                        key={i}
+                        href={link || ch.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative block aspect-[3/4] w-full overflow-hidden rounded-lg ring-1 ring-white/10"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={cover}
+                          alt=""
+                          className="h-full w-full object-cover transition-transform hover:scale-105"
+                        />
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </div>
