@@ -10,7 +10,15 @@ export const dynamic = "force-dynamic";
  */
 export async function GET(req: Request) {
   const secret = new URL(req.url).searchParams.get("secret");
-  if (!process.env.REFRESH_SECRET || secret !== process.env.REFRESH_SECRET) {
+  const auth = req.headers.get("authorization");
+
+  // İki yetki yolu: manuel (?secret=REFRESH_SECRET) veya Vercel Cron (Authorization: Bearer CRON_SECRET)
+  const okQuery =
+    !!process.env.REFRESH_SECRET && secret === process.env.REFRESH_SECRET;
+  const okCron =
+    !!process.env.CRON_SECRET && auth === `Bearer ${process.env.CRON_SECRET}`;
+
+  if (!okQuery && !okCron) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
   const results = await refreshAllChannels();
