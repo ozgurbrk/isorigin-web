@@ -13,7 +13,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://isorigin.com";
 
 const title = "isorigin — Metin2 İçerik Üreticisi & Canlı Yayın";
 const description =
-  "isorigin resmi sitesi — 2018'den beri Metin2 içerik üreticisi. Metin2 videoları, rehberler, PvM ve canlı yayınlar (TikTok, Kick, Twitch), Discord topluluğu, çekilişler ve duyurular tek yerde.";
+  "isorigin resmi sitesi — 2018'den beri Metin2 ve MarkMT2 içerik üreticisi. MarkMT2 (Mark Metin2) 1-99 hard emek serisi, Metin2 videoları, rehberler, PvM ve canlı yayınlar (TikTok, Kick, Twitch), Discord topluluğu ve duyurular tek yerde.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,6 +35,18 @@ export const metadata: Metadata = {
     "Metin2 PvM",
     "Metin2 youtuber",
     "Metin2 Türkiye",
+    "markmt2",
+    "mark metin2",
+    "markmetin2",
+    "mark mt2",
+    "markmetin 2",
+    "mark2",
+    "mark2 1-99",
+    "markmt2 hard",
+    "markmt2 emek",
+    "markmt2 1-99",
+    "markmt2 isorigin",
+    "isorigin markmt2",
   ],
   authors: [{ name: "isorigin" }],
   creator: "isorigin",
@@ -107,7 +119,14 @@ export default function RootLayout({
                   jobTitle: "Metin2 İçerik Üreticisi",
                   description:
                     "2018'den beri Metin2 içerik üreticisi ve canlı yayıncı.",
-                  knowsAbout: ["Metin2", "Oyun", "Canlı Yayın"],
+                  knowsAbout: [
+                    "Metin2",
+                    "MarkMT2",
+                    "Mark Metin2",
+                    "MarkMT2 1-99 Hard Emek",
+                    "Oyun",
+                    "Canlı Yayın",
+                  ],
                 },
               ],
             }),
