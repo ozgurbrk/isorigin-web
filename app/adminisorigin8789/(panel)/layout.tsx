@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+﻿import { redirect } from "next/navigation";
 import { isAuthenticated } from "@/lib/auth";
 import Sidebar from "./Sidebar";
 
@@ -9,7 +9,7 @@ export default async function PanelLayout({
 }: {
   children: React.ReactNode;
 }) {
-  if (!(await isAuthenticated())) redirect("/admin/login");
+  if (!(await isAuthenticated())) redirect("/adminisorigin8789/login");
 
   return (
     <div className="relative z-0 min-h-screen bg-zinc-950 text-zinc-100">

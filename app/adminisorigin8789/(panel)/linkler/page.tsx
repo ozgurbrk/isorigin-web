@@ -1,7 +1,7 @@
-import { asc } from "drizzle-orm";
+﻿import { asc } from "drizzle-orm";
 import { db } from "@/db";
 import { linkCards } from "@/db/schema";
-import { updateLink } from "@/app/admin/actions";
+import { updateLink } from "@/app/adminisorigin8789/actions";
 import { PageTitle, Panel, inputCls, btnPrimary } from "../ui";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +16,7 @@ export default async function LinklerAdmin() {
     <div className="max-w-3xl space-y-6">
       <PageTitle
         title="Linkler"
-        desc="Ana ve sosyal linklerin adreslerini ve başlıklarını düzenle."
+        desc="Ana ve sosyal linklerin adreslerini ve baÅŸlÄ±klarÄ±nÄ± dÃ¼zenle."
       />
 
       <div className="space-y-4">
@@ -37,7 +37,7 @@ export default async function LinklerAdmin() {
                     defaultChecked={l.enabled}
                     className="accent-gold-400"
                   />
-                  Görünür
+                  GÃ¶rÃ¼nÃ¼r
                 </label>
               </div>
 
@@ -46,13 +46,13 @@ export default async function LinklerAdmin() {
                   name="title"
                   defaultValue={l.title}
                   className={inputCls}
-                  placeholder="Başlık"
+                  placeholder="BaÅŸlÄ±k"
                 />
                 <input
                   name="subtitle"
                   defaultValue={l.subtitle ?? ""}
                   className={inputCls}
-                  placeholder="Alt başlık (opsiyonel)"
+                  placeholder="Alt baÅŸlÄ±k (opsiyonel)"
                 />
               </div>
               <input

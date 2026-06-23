@@ -1,8 +1,8 @@
-import { asc } from "drizzle-orm";
+﻿import { asc } from "drizzle-orm";
 import { Plus, Trash2 } from "lucide-react";
 import { db } from "@/db";
 import { announcements } from "@/db/schema";
-import { addAnnouncement, deleteAnnouncement } from "@/app/admin/actions";
+import { addAnnouncement, deleteAnnouncement } from "@/app/adminisorigin8789/actions";
 import { PageTitle, Panel, inputCls, btnPrimary } from "../ui";
 
 export const dynamic = "force-dynamic";
@@ -15,12 +15,12 @@ export default async function DuyurularAdmin() {
 
   return (
     <div className="max-w-3xl space-y-6">
-      <PageTitle title="Duyurular" desc="WhatsApp ve Discord duyuruları." />
+      <PageTitle title="Duyurular" desc="WhatsApp ve Discord duyurularÄ±." />
 
       <Panel title="Yeni Duyuru">
         <form action={addAnnouncement} className="space-y-3">
           <div className="flex gap-2">
-            <input name="title" className={inputCls} placeholder="Başlık" />
+            <input name="title" className={inputCls} placeholder="BaÅŸlÄ±k" />
             <select name="source" className={`${inputCls} w-40`} defaultValue="whatsapp">
               <option value="whatsapp">WhatsApp</option>
               <option value="discord">Discord</option>
@@ -30,7 +30,7 @@ export default async function DuyurularAdmin() {
             name="body"
             rows={2}
             className={`${inputCls} resize-none`}
-            placeholder="İçerik"
+            placeholder="Ä°Ã§erik"
           />
           <button className={btnPrimary}>
             <Plus size={13} /> Duyuru Ekle
@@ -70,7 +70,7 @@ export default async function DuyurularAdmin() {
         ))}
         {news.length === 0 && (
           <div className="py-8 text-center text-sm text-zinc-600">
-            Henüz duyuru yok.
+            HenÃ¼z duyuru yok.
           </div>
         )}
       </div>

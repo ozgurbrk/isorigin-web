@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -15,15 +15,15 @@ import {
   X,
   ExternalLink,
 } from "lucide-react";
-import { logout } from "@/app/admin/actions";
+import { logout } from "@/app/adminisorigin8789/actions";
 
 const NAV = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/videolar", label: "Videolar", icon: Clapperboard },
-  { href: "/admin/duyurular", label: "Duyurular", icon: Megaphone },
-  { href: "/admin/canli-yayin", label: "Canlı Yayın", icon: Radio },
-  { href: "/admin/linkler", label: "Linkler", icon: LinkIcon },
-  { href: "/admin/ayarlar", label: "Ayarlar", icon: Settings },
+  { href: "/adminisorigin8789", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/adminisorigin8789/videolar", label: "Videolar", icon: Clapperboard },
+  { href: "/adminisorigin8789/duyurular", label: "Duyurular", icon: Megaphone },
+  { href: "/adminisorigin8789/canli-yayin", label: "CanlÄ± YayÄ±n", icon: Radio },
+  { href: "/adminisorigin8789/linkler", label: "Linkler", icon: LinkIcon },
+  { href: "/adminisorigin8789/ayarlar", label: "Ayarlar", icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -31,12 +31,12 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) =>
-    href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
+    href === "/adminisorigin8789" ? pathname === "/adminisorigin8789" : pathname.startsWith(href);
   const current = NAV.find((n) => isActive(n.href))?.label ?? "Admin";
 
   return (
     <>
-      {/* Üst bar (mobil) */}
+      {/* Ãœst bar (mobil) */}
       <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-zinc-800 bg-zinc-900/80 px-4 backdrop-blur lg:hidden">
         <button
           onClick={() => setOpen(!open)}
@@ -88,11 +88,11 @@ export default function Sidebar() {
             href="/"
             className="flex items-center gap-2.5 rounded-md px-3 py-2 text-xs text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-zinc-300"
           >
-            <ExternalLink size={13} /> Siteye Dön
+            <ExternalLink size={13} /> Siteye DÃ¶n
           </Link>
           <form action={logout}>
             <button className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-xs text-zinc-500 transition-colors hover:bg-red-400/5 hover:text-red-400">
-              <LogOut size={13} /> Çıkış Yap
+              <LogOut size={13} /> Ã‡Ä±kÄ±ÅŸ Yap
             </button>
           </form>
         </div>

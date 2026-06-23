@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -24,11 +24,11 @@ import {
 import { refreshAllChannels } from "@/lib/integrations";
 
 async function requireAuth() {
-  if (!(await isAuthenticated())) redirect("/admin/login");
+  if (!(await isAuthenticated())) redirect("/adminisorigin8789/login");
 }
 
 function refresh() {
-  revalidatePath("/admin", "layout");
+  revalidatePath("/adminisorigin8789", "layout");
   revalidatePath("/");
 }
 
@@ -41,9 +41,9 @@ export async function addVideo(formData: FormData) {
   const featured = formData.get("featured") === "on";
   const youtubeId = parseYouTubeId(link);
   if (!youtubeId) return;
-  // Başlık boşsa YouTube'dan otomatik çek
+  // BaÅŸlÄ±k boÅŸsa YouTube'dan otomatik Ã§ek
   if (!title) {
-    title = (await fetchYouTubeTitle(youtubeId)) ?? "Başlıksız video";
+    title = (await fetchYouTubeTitle(youtubeId)) ?? "BaÅŸlÄ±ksÄ±z video";
   }
   await db.insert(videos).values({
     title,
@@ -69,7 +69,7 @@ export async function addVideosBulk(formData: FormData) {
   for (const line of lines) {
     const youtubeId = parseYouTubeId(line);
     if (!youtubeId) continue;
-    const title = (await fetchYouTubeTitle(youtubeId)) ?? "Başlıksız video";
+    const title = (await fetchYouTubeTitle(youtubeId)) ?? "BaÅŸlÄ±ksÄ±z video";
     await db.insert(videos).values({
       title,
       youtubeId,
@@ -115,15 +115,15 @@ export async function deleteVideoCategory(id: number) {
 export async function login(_prev: string | null, formData: FormData) {
   const password = String(formData.get("password") ?? "");
   if (!verifyPassword(password)) {
-    return "Hatalı şifre.";
+    return "HatalÄ± ÅŸifre.";
   }
   await createSession();
-  redirect("/admin");
+  redirect("/adminisorigin8789");
 }
 
 export async function logout() {
   await destroySession();
-  redirect("/admin/login");
+  redirect("/adminisorigin8789/login");
 }
 
 // ---- Submissions ----
@@ -161,7 +161,7 @@ export async function updateLiveChannel(id: number, formData: FormData) {
   await db
     .update(liveChannels)
     .set({
-      label: s("label") || "Yayın",
+      label: s("label") || "YayÄ±n",
       url: s("url"),
       handle: s("handle"),
       avatarUrl: s("avatarUrl"),
