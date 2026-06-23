@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const ITEMS = [
   { id: "vitrin", label: "Ana Sayfa", short: "Ana Sayfa" },
-  { id: "canli", label: "Canlı Yayın & Duyurular", short: "Canlı & Duyuru" },
+  { id: "canli", label: "Duyurular", short: "Duyurular" },
   { id: "videolar", label: "Videolar", short: "Videolar" },
 ];
 

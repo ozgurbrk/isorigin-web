@@ -53,8 +53,22 @@ export default async function Home() {
           <Header settings={settings} />
         </Reveal>
 
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center gap-6 lg:flex-row lg:items-stretch lg:gap-8">
-          <Reveal className="flex w-full max-w-[400px] flex-col justify-center gap-4 lg:flex-1" delay={120}>
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 lg:flex-row lg:items-start lg:gap-8">
+          {/* Sol: en son eklenen video */}
+          {latestVideo && (
+            <Reveal
+              className="order-2 w-full max-w-[420px] lg:order-1"
+              delay={240}
+            >
+              <LatestVideo video={latestVideo} />
+            </Reveal>
+          )}
+
+          {/* Orta: link butonları */}
+          <Reveal
+            className="order-1 flex w-full max-w-[380px] flex-col gap-4 lg:order-2"
+            delay={120}
+          >
             {mainLinks.filter((l) => l.enabled).length > 0 && (
               <div className="space-y-3">
                 {mainLinks
@@ -67,14 +81,13 @@ export default async function Home() {
             <SocialRow links={socialLinks.filter((l) => l.enabled)} />
           </Reveal>
 
-          {latestVideo && (
-            <Reveal
-              className="flex w-full max-w-[560px] flex-col lg:flex-[1.35]"
-              delay={240}
-            >
-              <LatestVideo video={latestVideo} />
-            </Reveal>
-          )}
+          {/* Sağ: TikTok / canlı yayın telefonu */}
+          <Reveal
+            className="order-3 w-[342px] max-w-full lg:order-3"
+            delay={300}
+          >
+            <LivePreview channels={live} />
+          </Reveal>
         </div>
       </section>
 
@@ -86,15 +99,12 @@ export default async function Home() {
         <Reveal className="w-full max-w-5xl px-1">
           <h2 className="flex items-center gap-3 text-2xl font-extrabold tracking-tight text-zinc-100 sm:text-3xl">
             <span className="brand-gradient h-7 w-1.5 rounded-full" />
-            Canlı Yayın &amp; Duyurular
+            Duyurular
           </h2>
         </Reveal>
 
         <div className="flex w-full flex-wrap items-center justify-center gap-6">
-          <Reveal className="w-[342px] max-w-full" delay={80}>
-            <LivePreview channels={live} />
-          </Reveal>
-          <Reveal className="w-[342px] max-w-full" delay={200}>
+          <Reveal className="w-[342px] max-w-full" delay={120}>
             <AnnouncementPhone
               source="whatsapp"
               title={`${settings.brandName} Duyuru`}
@@ -103,7 +113,7 @@ export default async function Home() {
               joinLabel="Kanala Katıl"
             />
           </Reveal>
-          <Reveal className="w-[342px] max-w-full" delay={320}>
+          <Reveal className="w-[342px] max-w-full" delay={260}>
             <AnnouncementPhone
               source="discord"
               title={`${settings.brandName} Community`}
