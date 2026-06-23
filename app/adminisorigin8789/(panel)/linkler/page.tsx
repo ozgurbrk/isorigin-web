@@ -1,4 +1,4 @@
-﻿import { asc } from "drizzle-orm";
+import { asc } from "drizzle-orm";
 import { db } from "@/db";
 import { linkCards } from "@/db/schema";
 import { updateLink } from "@/app/adminisorigin8789/actions";
@@ -16,7 +16,7 @@ export default async function LinklerAdmin() {
     <div className="max-w-3xl space-y-6">
       <PageTitle
         title="Linkler"
-        desc="Ana ve sosyal linklerin adreslerini ve baÅŸlÄ±klarÄ±nÄ± dÃ¼zenle."
+        desc="Ana ve sosyal linklerin adreslerini ve başlıklarını düzenle."
       />
 
       <div className="space-y-4">
@@ -37,7 +37,7 @@ export default async function LinklerAdmin() {
                     defaultChecked={l.enabled}
                     className="accent-gold-400"
                   />
-                  GÃ¶rÃ¼nÃ¼r
+                  Görünür
                 </label>
               </div>
 
@@ -46,13 +46,13 @@ export default async function LinklerAdmin() {
                   name="title"
                   defaultValue={l.title}
                   className={inputCls}
-                  placeholder="BaÅŸlÄ±k"
+                  placeholder="Başlık"
                 />
                 <input
                   name="subtitle"
                   defaultValue={l.subtitle ?? ""}
                   className={inputCls}
-                  placeholder="Alt baÅŸlÄ±k (opsiyonel)"
+                  placeholder="Alt başlık (opsiyonel)"
                 />
               </div>
               <input

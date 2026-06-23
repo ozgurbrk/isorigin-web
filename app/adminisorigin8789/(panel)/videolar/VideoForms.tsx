@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { Plus, Layers } from "lucide-react";
@@ -16,7 +16,7 @@ export default function VideoForms({ categories }: { categories: Cat[] }) {
 
   const CatSelect = () => (
     <select name="category" className={inputCls} defaultValue="">
-      <option value="">â€” Kategorisiz â€”</option>
+      <option value="">— Kategorisiz —</option>
       {categories.map((c) => (
         <option key={c.id} value={c.name}>
           {c.name}
@@ -56,12 +56,12 @@ export default function VideoForms({ categories }: { categories: Cat[] }) {
           <input
             name="youtube"
             className={inputCls}
-            placeholder="YouTube linki veya video ID (Ã¶rn: https://youtu.be/xxxx)"
+            placeholder="YouTube linki veya video ID (örn: https://youtu.be/xxxx)"
           />
           <input
             name="title"
             className={inputCls}
-            placeholder="BaÅŸlÄ±k (boÅŸ bÄ±rakÄ±rsan YouTube'dan otomatik Ã§ekilir)"
+            placeholder="Başlık (boş bırakırsan YouTube'dan otomatik çekilir)"
           />
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
@@ -72,7 +72,7 @@ export default function VideoForms({ categories }: { categories: Cat[] }) {
             </div>
             <label className="flex items-end gap-2 pb-2 text-sm text-zinc-400">
               <input type="checkbox" name="featured" className="accent-gold-400" />
-              Ã–ne Ã§Ä±kan
+              Öne çıkan
             </label>
           </div>
           <button className={btnPrimary}>
@@ -83,7 +83,7 @@ export default function VideoForms({ categories }: { categories: Cat[] }) {
         <form action={addVideosBulk} className="space-y-3">
           <div>
             <label className="mb-1 block text-xs text-zinc-500">
-              YouTube linkleri â€” her satÄ±ra bir tane
+              YouTube linkleri — her satıra bir tane
             </label>
             <textarea
               name="links"
@@ -94,19 +94,19 @@ export default function VideoForms({ categories }: { categories: Cat[] }) {
               }
             />
             <p className="mt-1 text-[11px] text-zinc-600">
-              BaÅŸlÄ±klar her video iÃ§in YouTube&apos;dan otomatik Ã§ekilir.
+              Başlıklar her video için YouTube&apos;dan otomatik çekilir.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <label className="mb-1 block text-xs text-zinc-500">
-                Kategori (hepsine uygulanÄ±r)
+                Kategori (hepsine uygulanır)
               </label>
               <CatSelect />
             </div>
             <label className="flex items-end gap-2 pb-2 text-sm text-zinc-400">
               <input type="checkbox" name="featured" className="accent-gold-400" />
-              Hepsi Ã¶ne Ã§Ä±kan
+              Hepsi öne çıkan
             </label>
           </div>
           <button className={btnPrimary}>

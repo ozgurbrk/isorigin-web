@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Clapperboard, Megaphone, Radio, Link as LinkIcon } from "lucide-react";
 import { db } from "@/db";
 import {
@@ -22,13 +22,13 @@ export default async function Dashboard() {
   const cards = [
     { label: "Video", count: vids.length, href: "/adminisorigin8789/videolar", icon: Clapperboard },
     { label: "Duyuru", count: news.length, href: "/adminisorigin8789/duyurular", icon: Megaphone },
-    { label: "CanlÄ± Kanal", count: live.length, href: "/adminisorigin8789/canli-yayin", icon: Radio },
+    { label: "Canlı Kanal", count: live.length, href: "/adminisorigin8789/canli-yayin", icon: Radio },
     { label: "Link", count: links.length, href: "/adminisorigin8789/linkler", icon: LinkIcon },
   ];
 
   return (
     <div>
-      <PageTitle title="Dashboard" desc="isorigin yÃ¶netim paneline hoÅŸ geldin." />
+      <PageTitle title="Dashboard" desc="isorigin yönetim paneline hoş geldin." />
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {cards.map(({ label, count, href, icon: Icon }) => (
           <Link

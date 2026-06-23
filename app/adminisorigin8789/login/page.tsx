@@ -1,4 +1,4 @@
-﻿import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { isAuthenticated } from "@/lib/auth";
 import LoginForm from "./LoginForm";
 
@@ -9,10 +9,10 @@ export default async function LoginPage() {
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-sm flex-col justify-center px-4">
       <h1 className="mb-1 text-center text-2xl font-bold text-gradient-gold">
-        isorigin Â· Admin
+        isorigin · Admin
       </h1>
       <p className="mb-6 text-center text-sm text-zinc-500">
-        YÃ¶netim paneline giriÅŸ yap
+        Yönetim paneline giriş yap
       </p>
       <LoginForm />
     </main>

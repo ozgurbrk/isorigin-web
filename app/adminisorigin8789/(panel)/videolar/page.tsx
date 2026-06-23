@@ -1,4 +1,4 @@
-﻿import { asc } from "drizzle-orm";
+import { asc } from "drizzle-orm";
 import { Plus, Trash2, Star, Tag } from "lucide-react";
 import { db } from "@/db";
 import { videoCategories, videos } from "@/db/schema";
@@ -22,7 +22,7 @@ export default async function VideolarAdmin() {
 
   return (
     <div className="max-w-3xl space-y-6">
-      <PageTitle title="Videolar" desc="YouTube videolarÄ± ve kategoriler." />
+      <PageTitle title="Videolar" desc="YouTube videoları ve kategoriler." />
 
       {/* Kategoriler */}
       <Panel>
@@ -38,20 +38,20 @@ export default async function VideolarAdmin() {
               {c.name}
               <form action={deleteVideoCategory.bind(null, c.id)}>
                 <button className="ml-1 text-zinc-600 transition-colors hover:text-red-400">
-                  âœ•
+                  ✕
                 </button>
               </form>
             </div>
           ))}
           {cats.length === 0 && (
-            <span className="text-xs text-zinc-600">HenÃ¼z kategori yok</span>
+            <span className="text-xs text-zinc-600">Henüz kategori yok</span>
           )}
         </div>
         <form action={addVideoCategory} className="flex gap-2">
           <input
             name="name"
             className={inputCls}
-            placeholder="Yeni kategori adÄ±"
+            placeholder="Yeni kategori adı"
           />
           <button className={btnPrimary}>
             <Plus size={13} /> Ekle
@@ -59,7 +59,7 @@ export default async function VideolarAdmin() {
         </form>
       </Panel>
 
-      {/* Yeni video â€” tekli / toplu */}
+      {/* Yeni video — tekli / toplu */}
       <div>
         <h2 className="mb-2 text-sm font-bold text-zinc-300">Yeni Video</h2>
         <VideoForms categories={cats} />
@@ -86,7 +86,7 @@ export default async function VideolarAdmin() {
                     {v.category}
                   </span>
                 )}
-                <span className="text-[10px] text-green-400">â–¶ YouTube</span>
+                <span className="text-[10px] text-green-400">▶ YouTube</span>
               </div>
               <div className="line-clamp-1 text-sm font-semibold text-zinc-200">
                 {v.title}
@@ -95,7 +95,7 @@ export default async function VideolarAdmin() {
             <form action={toggleVideoFeatured.bind(null, v.id)}>
               <button
                 className="p-1.5 text-zinc-600 transition-colors hover:text-gold-400"
-                title="Ã–ne Ã§Ä±kar"
+                title="Öne çıkar"
               >
                 <Star size={14} />
               </button>
@@ -109,7 +109,7 @@ export default async function VideolarAdmin() {
         ))}
         {vids.length === 0 && (
           <div className="py-8 text-center text-sm text-zinc-600">
-            HenÃ¼z video yok.
+            Henüz video yok.
           </div>
         )}
       </div>
