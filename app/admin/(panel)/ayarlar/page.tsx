@@ -32,6 +32,18 @@ export default async function AyarlarAdmin() {
             <label className="mb-1 block text-xs text-zinc-500">İletişim e-postası</label>
             <input name="contactEmail" defaultValue={s?.contactEmail ?? ""} className={inputCls} />
           </div>
+          <div>
+            <label className="mb-1 block text-xs text-zinc-500">
+              Hakkımda metni
+            </label>
+            <textarea
+              name="profileText"
+              defaultValue={s?.profileText ?? ""}
+              rows={5}
+              className={`${inputCls} resize-none`}
+              placeholder="Hakkımda bölümünde gösterilecek metin"
+            />
+          </div>
           {/* Ferman alanları gizli tutuluyor (site bölümü kaldırıldı) ama değer korunur */}
           <input type="hidden" name="decreeTitle" defaultValue={s?.decreeTitle ?? ""} />
           <input type="hidden" name="decreeText" defaultValue={s?.decreeText ?? ""} />

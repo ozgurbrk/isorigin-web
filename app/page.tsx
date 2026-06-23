@@ -5,6 +5,7 @@ import LivePreview from "@/components/LivePreview";
 import LatestVideo from "@/components/LatestVideo";
 import AnnouncementPhone from "@/components/AnnouncementPhone";
 import VideosSection from "@/components/VideosSection";
+import AboutSection from "@/components/AboutSection";
 import Reveal from "@/components/Reveal";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -125,13 +126,23 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Bölüm 3 — Videolar + footer */}
+      {/* Bölüm 3 — Videolar */}
       <section
         id="videolar"
         className="flex min-h-[100dvh] w-full snap-start flex-col items-center justify-center gap-10 px-4 pb-12 pt-20"
       >
         <Reveal className="w-full">
           <VideosSection videos={vids} categories={vidCats} />
+        </Reveal>
+      </section>
+
+      {/* Bölüm 4 — Hakkımda + footer */}
+      <section
+        id="hakkimda"
+        className="flex min-h-[100dvh] w-full snap-start flex-col items-center justify-center gap-10 px-4 pb-12 pt-20"
+      >
+        <Reveal className="w-full">
+          <AboutSection settings={settings} />
         </Reveal>
         <Reveal className="w-full max-w-lg" delay={150}>
           <Footer settings={settings} />

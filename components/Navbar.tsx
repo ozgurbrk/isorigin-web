@@ -6,6 +6,7 @@ const ITEMS = [
   { id: "vitrin", label: "Ana Sayfa", short: "Ana Sayfa" },
   { id: "canli", label: "Duyurular", short: "Duyurular" },
   { id: "videolar", label: "Videolar", short: "Videolar" },
+  { id: "hakkimda", label: "Hakkımda", short: "Hakkımda" },
 ];
 
 export default function Navbar() {

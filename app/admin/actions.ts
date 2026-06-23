@@ -246,6 +246,7 @@ export async function updateSettings(formData: FormData) {
     brandName: String(formData.get("brandName") ?? "isorigin").trim(),
     handle: String(formData.get("handle") ?? "@isorigin").trim(),
     tagline: String(formData.get("tagline") ?? "").trim(),
+    profileText: String(formData.get("profileText") ?? "").trim(),
     decreeTitle: String(formData.get("decreeTitle") ?? "").trim(),
     decreeText: String(formData.get("decreeText") ?? "").trim(),
     contactEmail: String(formData.get("contactEmail") ?? "").trim(),
