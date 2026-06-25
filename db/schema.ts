@@ -91,6 +91,16 @@ export const videos = sqliteTable("videos", {
     .default(sql`(unixepoch())`),
 });
 
+export const pageViews = sqliteTable("page_views", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  path: text("path").notNull().default("/"),
+  visitorId: text("visitor_id").notNull().default(""),
+  referrer: text("referrer").notNull().default(""),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .default(sql`(unixepoch())`),
+});
+
 export const submissions = sqliteTable("submissions", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
@@ -111,3 +121,4 @@ export type SiteSettings = typeof siteSettings.$inferSelect;
 export type Submission = typeof submissions.$inferSelect;
 export type Video = typeof videos.$inferSelect;
 export type VideoCategory = typeof videoCategories.$inferSelect;
+export type PageView = typeof pageViews.$inferSelect;

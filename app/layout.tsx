@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import BackgroundFX from "@/components/BackgroundFX";
+import Tracker from "@/components/Tracker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -133,6 +134,7 @@ export default function RootLayout({
           }}
         />
         <BackgroundFX />
+        <Tracker />
         {children}
       </body>
     </html>
