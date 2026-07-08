@@ -10,7 +10,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://isorigin.com";
+const siteUrl = "https://isorigin.com";
 
 const title = "isorigin — Metin2 İçerik Üreticisi & Canlı Yayın";
 const description =
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: siteUrl,
+    url: `${siteUrl}/`,
     siteName: "isorigin",
     title,
     description,
